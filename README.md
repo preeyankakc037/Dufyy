@@ -62,7 +62,9 @@ pip install -r requirements.txt
 
 ## 4. Set environment variables
 export DJANGO_SECRET_KEY="your_secret_key"
+
 export SPOTIFY_CLIENT_ID="your_spotify_client_id"
+
 export SPOTIFY_CLIENT_SECRET="your_spotify_client_secret"
 
 ## 5. Apply migrations and run the server
