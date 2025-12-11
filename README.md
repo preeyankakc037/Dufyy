@@ -69,4 +69,5 @@ export SPOTIFY_CLIENT_SECRET="your_spotify_client_secret"
 
 ## 5. Apply migrations and run the server
 python manage.py migrate
+
 python manage.py runserver
