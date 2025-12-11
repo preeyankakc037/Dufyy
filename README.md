@@ -3,7 +3,7 @@
 <img width="1887" height="811" alt="image" src="https://github.com/user-attachments/assets/026a908a-0428-4588-aa3f-05adda5f1032" />
 
 
-**Live Demo:** [https://your-deployed-app.vercel.app](https://your-deployed-app.vercel.app)  
+**Live Demo:** [https://your-deployed-app.vercel.app](https://dufy.onrender.com/)  
 
 ## About DuFy
 
