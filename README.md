@@ -5,36 +5,46 @@
 
 **Live Demo:** [https://your-deployed-app.vercel.app](https://your-deployed-app.vercel.app)  
 
-DuFy is a **Django + DRF backend project** that provides music recommendations and trending Spotify tracks using a public playlist. Optimized for **FAISS search**, caching with Redis, and deployed for **Vercel**.
+## About DuFy
 
----
+DuFy is an **AI-powered music recommendation system** designed to solve a real problem in the music discovery industry. Many users, editors, and content creators struggle to find music that matches a specific mood, style, or theme, and even when they do, it often takes too much time or effort.  
 
-## Features
+The core goal of DuFy is **to automate music personalization at scale**—analyzing lyrics, metadata, and available audio across platforms (Spotify, YouTube, and other APIs) to cover **all available songs on the internet**. By leveraging **PyTorch embeddings and NLP-based similarity models**, DuFy aims to deliver highly accurate, context-aware, and personalized music recommendations efficiently.  
 
-- Fetch **Global Top 50** trending Spotify tracks  
-- Recommendation engine for personalized music  
-- REST API endpoints with **Django Rest Framework**  
-- Secure, production-ready settings for deployment  
-- Redis caching for improved performance  
-- Easy integration with frontend apps
+Currently, the system is trained on a curated dataset with embeddings (`music_embeddings.pt`), and the vision is to expand to **automatically process all available songs** online, making personalized music discovery seamless, fast, and effective for users and creators alike.
+
+## Core Features
+
+- **Personalized Music Recommendations** 🎵  
+  - Trained on a dataset of songs using **PyTorch embeddings**.  
+  - Converts song lyrics and metadata into **vector embeddings** for semantic similarity.  
+  - Finds songs with similar mood, theme, or style based on user descriptions.  
+
+- **Trending Spotify Tracks**  
+  - Fetches Global Top 50 tracks from verified public playlists.  
+
+- **REST API Endpoints**  
+  - Exposes endpoints like `/api/recommend/` and `/api/trending/` for frontend integration.  
+
+- **Scalable Infrastructure**  
+  - Django + DRF backend, Redis caching, FAISS vector search for fast queries.  
 
 ---
 
 ## Tech Stack
 
-- **Backend:** Python 3.x, Django 5.x, Django REST Framework  
-- **API:** Spotify Client Credentials API  
-- **Caching:** Redis  
-- **Vector Search:** FAISS  
-- **Deployment:** Vercel  
+- **Backend:** Django, Django REST Framework, SQLite/PostgreSQL  
+- **Frontend:** HTML, Tailwind CSS, Bootstrap
+- **AI & NLP:** PyTorch, Sentence Transformers, Transformers (Hugging Face), scikit-learn  
+- **Tools & Infrastructure:** Redis, Vercel deployment, Git & GitHub  
 
 ---
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the repo:
 
-bash
+```bash
 git clone https://github.com/YOUR_USERNAME/Dufyy.git
 cd Dufyy
 
