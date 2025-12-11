@@ -3,8 +3,6 @@
 <img width="1887" height="811" alt="DuFy Banner" src="https://github.com/user-attachments/assets/026a908a-0428-4588-aa3f-05adda5f1032" />
 
 **Live Demo:** [https://dufy.onrender.com/](https://dufy.onrender.com/)  
-**GitHub Repository:** [https://github.com/preeyankakc037/Dufyy](https://github.com/preeyankakc037/Dufyy)
-
 ---
 
 ## About DuFy
@@ -48,6 +46,25 @@ Currently, the system is trained on a curated dataset with embeddings (`music_em
 
 ### 1. Clone the repository
 
-```bash
+
 git clone https://github.com/preeyankakc037/Dufyy.git
 cd Dufyy
+
+### 2. Create a virtual environment
+python -m venv venv
+# Linux/Mac
+source venv/bin/activate
+# Windows
+venv\Scripts\activate
+
+## 3. Install dependencies
+pip install -r requirements.txt
+
+## 4. Set environment variables
+export DJANGO_SECRET_KEY="your_secret_key"
+export SPOTIFY_CLIENT_ID="your_spotify_client_id"
+export SPOTIFY_CLIENT_SECRET="your_spotify_client_secret"
+
+## 5. Apply migrations and run the server
+python manage.py migrate
+python manage.py runserver
