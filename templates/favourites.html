@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Your Favourites – DuFy{% endblock %}
+
+{% block content %}
+
+<section class="py-16">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-4xl font-extrabold mb-12 text-white">Your Favourites </h2>
+
+        <div id="loading" class="text-gray-400 text-center py-20">Loading your favourites...</div>
+
+        <div id="emptyState" class="hidden text-center py-24">
+            <i class="fas fa-heart-broken text-7xl text-gray-700 mb-6 opacity-40"></i>
+            <p class="text-2xl text-gray-400 font-medium">No favourites yet</p>
+            <p class="text-gray-500 mt-3">Go to Discover and tap the star to save songs!</p>
+        </div>
+
+        <div id="favouritesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+            <!-- Cards injected here -->
+        </div>
+    </div>
+</section>
+
+<script>
+function removeFromFavorites(track) {
+    let favorites = JSON.parse(localStorage.getItem('favoriteTracks') || '[]');
+    favorites = favorites.filter(fav =>
+        !(fav.music_name === track.music_name &&
+          fav.artist_name === track.artist_name &&
+          fav.music_link === track.music_link)
+    );
+    localStorage.setItem('favoriteTracks', JSON.stringify(favorites));
+    loadFavorites(); // Re-render
+}
+
+function loadFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('favoriteTracks') || '[]');
+    const grid = document.getElementById('favouritesGrid');
+    const loading = document.getElementById('loading');
+    const emptyState = document.getElementById('emptyState');
+
+    loading.classList.add('hidden');
+
+    if (favorites.length === 0) {
+        emptyState.classList.remove('hidden');
+        grid.innerHTML = '';
+        return;
+    }
+
+    emptyState.classList.add('hidden');
+    grid.innerHTML = '';
+
+    favorites.forEach(track => {
+        const img = track.image_url && track.image_url.trim() !== ""
+            ? track.image_url
+            : "{% static 'indie.jpg' %}";
+
+        const name = track.music_name || "Unknown Track";
+        const artist = track.artist_name || "Unknown Artist";
+        const link = track.music_link || "#";
+
+        const trackJSON = JSON.stringify(track).replace(/'/g, "\\'");
+
+        grid.innerHTML += `
+            <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                <a href="${link}" target="_blank" class="block">
+                    <!-- Image -->
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="${img}" alt="${name}"
+                             class="w-full aspect-square object-cover transition-all duration-500 group-hover:brightness-75 group-hover:scale-110">
+                    </div>
+
+                    <!-- Song name & artist - ALWAYS VISIBLE at bottom -->
+                    <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+                        <p class="font-bold text-white text-sm truncate">${name}</p>
+                        <p class="text-xs text-gray-300 truncate">${artist}</p>
+                    </div>
+
+                    <!-- Clickable Green Heart (Remove from favorites) -->
+                    <div class="absolute top-3 right-3">
+                        <button onclick='removeFromFavorites(${trackJSON}); event.stopPropagation(); event.preventDefault();'
+                                class="text-green-400 hover:text-red-500 transition-all transform hover:scale-125">
+                            <i class="fas fa-heart text-sm drop-shadow-lg"></i>
+                        </button>
+                    </div>
+                </a>
+            </div>
+        `;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadFavorites);
+</script>
+
+<style>
+.fa-heart {
+    filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.8));
+    animation: heartbeat 1.5s infinite;
+}
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+}
+</style>
+
+{% endblock %}

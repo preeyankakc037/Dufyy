@@ -1,0 +1,282 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Playlists • DuFy{% endblock %}
+
+{% block content %}
+
+<section class="min-h-screen bg-[#121212] pt-10">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-12">
+      <div>
+        <h1 class="text-6xl md:text-8xl font-extrabold text-white">Playlists</h1>
+        <p class="text-xl text-gray-400 mt-3">Your music, your world</p>
+      </div>
+      <button onclick="showCreateModal()" class="bg-green-500 hover:bg-green-400 text-black font-bold py-4 px-8 rounded-full shadow-2xl flex items-center gap-3 text-lg transition">
+        <i class="fas fa-plus"></i> New Playlist
+      </button>
+    </div>
+
+    <!-- Playlists Grid -->
+    <div id="playlistsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 pb-20">
+
+      <!-- DuFy's Hottest -->
+      <div onclick="openPlaylist('__dufy_hottest__')" class="group cursor-pointer transform hover:scale-105 transition-all duration-300">
+        <div class="aspect-square rounded-2xl overflow-hidden shadow-2xl relative">
+          <div class="h-full bg-gradient-to-br from-purple-600 via-pink-600 to-red-600 flex items-center justify-center">
+            <i class="fas fa-fire-flame-curved text-9xl text-white opacity-80"></i>
+          </div>
+          <div class="absolute inset-0 bg-black/30"></div>
+        </div>
+        <div class="mt-4 text-center">
+          <h3 class="text-xl font-bold text-white">DuFy's Hottest</h3>
+          <p class="text-green-400 text-sm">Updated daily</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CREATE MODAL -->
+<div id="createModal" class="fixed inset-0 bg-black/95 z-50 hidden flex items-center justify-center p-6">
+  <div class="bg-[#1e1e1e] rounded-2xl p-8 max-w-md w-full shadow-2xl">
+    <h2 class="text-3xl font-bold text-white mb-6">Create New Playlist</h2>
+    <input id="newPlaylistName" class="w-full bg-[#333] text-white px-6 py-4 rounded-xl text-xl outline-none focus:ring-2 focus:ring-green-500" placeholder="December" autofocus>
+    <div class="flex gap-4 mt-8">
+      <button onclick="createPlaylist()" class="flex-1 bg-green-500 hover:bg-green-400 text-black font-bold py-4 rounded-xl">Create</button>
+      <button onclick="closeCreateModal()" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-4 rounded-xl">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- PLAYLIST MODAL -->
+<div id="playlistModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-start justify-center overflow-y-auto pt-10 pb-20">
+  <div class="w-full max-w-5xl bg-[#0f0f0f] rounded-2xl shadow-2xl overflow-hidden">
+    <div class="relative h-80 bg-gradient-to-b from-green-900 to-[#0f0f0f] flex items-end p-10">
+      <div class="flex items-end gap-8 w-full">
+        <div class="w-64 h-64 bg-gray-800 rounded-xl shadow-2xl border-4 border-gray-700 flex items-center justify-center">
+          <i class="fas fa-music text-9xl text-gray-600"></i>
+        </div>
+        <div class="text-white pb-6">
+          <h1 id="playlistTitle" class="text-6xl font-extrabold">My Playlist</h1>
+          <p id="playlistCount" class="text-2xl text-green-400 mt-3">0 songs</p>
+        </div>
+      </div>
+      <button onclick="closePlaylistModal()" class="absolute top-6 right-6 text-5xl text-white hover:text-gray-400">×</button>
+    </div>
+
+    <div class="p-8">
+      <input type="text" id="globalSearch" onkeyup="renderAllSongs()" placeholder="Search songs..." class="w-full bg-[#1e1e1e] text-white px-6 py-5 rounded-xl text-lg outline-none focus:ring-2 focus:ring-green-500 mb-8">
+      <div id="songsContainer" class="space-y-3"></div>
+      <div id="emptyState" class="text-center py-20 text-gray-500 hidden">
+        <p class="text-3xl font-medium">No songs found</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// GENRE COVERS — 1st playlist = rock.jpg, 2nd = pop.jpg, etc.
+const GENRE_COVERS = [
+  "{% static 'rock.jpg' %}",
+  "{% static 'pop.jpg' %}",
+  "{% static 'hiphop.jpg' %}",
+  "{% static 'classical.jpg' %}",
+  "{% static 'indie.jpg' %}",
+  "{% static 'acoustic.jpg' %}",
+  "{% static 'aboutyou.jpg' %}",
+  "{% static 'jazz.jpg' %}"
+];
+
+let ALL_SONGS = [];
+let currentPlaylistId = null;
+let currentPlaylistSongs = [];
+
+// Load songs
+async function loadSongs() {
+  const resp = await fetch('/api/recommend/?query=');
+  const data = await resp.json();
+  ALL_SONGS = data.recommendations || [];
+}
+
+// Load playlists with correct cover images
+function loadPlaylists() {
+  const playlists = JSON.parse(localStorage.getItem('dufy_playlists') || '[]');
+  const grid = document.getElementById('playlistsGrid');
+  document.querySelectorAll('#playlistsGrid > div:not(:first-child)').forEach(el => el.remove());
+
+  playlists.forEach((pl, index) => {
+    const cover = GENRE_COVERS[index % GENRE_COVERS.length];
+    const div = document.createElement('div');
+    div.onclick = () => openPlaylist(pl.id);
+    div.className = "group relative cursor-pointer transform hover:scale-105 transition-all duration-300";
+    div.innerHTML = `
+      <div class="aspect-square rounded-2xl overflow-hidden shadow-2xl">
+        <img src="${cover}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/1a1a1a/00ff85?text=Playlist'">
+      </div>
+      <div class="mt-4 text-center">
+        <h3 class="text-xl font-bold text-white truncate">${pl.name}</h3>
+        <p class="text-green-400 text-sm">${pl.songs.length} songs</p>
+      </div>
+      <button onclick="deletePlaylist(event,'${pl.id}')" class="absolute top-4 right-4 bg-red-600/90 hover:bg-red-500 text-white w-10 h-10 rounded-full opacity-0 group-hover:opacity-100 transition flex items-center justify-center shadow-lg z-10">
+        <i class="fas fa-trash"></i>
+      </button>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+// Open playlist
+function openPlaylist(id) {
+  currentPlaylistId = id;
+  const playlists = JSON.parse(localStorage.getItem('dufy_playlists') || '[]');
+  
+  if (id === '__dufy_hottest__') {
+    currentPlaylistSongs = ALL_SONGS.slice(0, 20);
+    document.getElementById('playlistTitle').textContent = "DuFy's Hottest";
+    document.getElementById('globalSearch').disabled = true;
+    document.getElementById('globalSearch').placeholder = "Search top tracks...";
+  } else {
+    const pl = playlists.find(p => p.id === id);
+    currentPlaylistSongs = pl ? pl.songs : [];
+    document.getElementById('playlistTitle').textContent = pl?.name || "My Playlist";
+    document.getElementById('globalSearch').disabled = false;
+    document.getElementById('globalSearch').placeholder = "Search or add songs...";
+  }
+
+  document.getElementById('playlistCount').textContent = currentPlaylistSongs.length + " songs";
+  renderAllSongs();
+  document.getElementById('playlistModal').classList.remove('hidden');
+}
+
+function closePlaylistModal() {
+  document.getElementById('playlistModal').classList.add('hidden');
+  document.getElementById('globalSearch').value = '';
+}
+
+// RENDER SONGS — ADDED SONGS ALWAYS PINNED ON TOP (FIXED FOREVER)
+function renderAllSongs() {
+  const container = document.getElementById('songsContainer');
+  const empty = document.getElementById('emptyState');
+  const query = (document.getElementById('globalSearch').value || '').toLowerCase();
+  const inPlaylistLinks = new Set(currentPlaylistSongs.map(s => s.music_link));
+
+  const added = [];
+  const others = [];
+
+  ALL_SONGS.forEach(song => {
+    const matches = song.music_name?.toLowerCase().includes(query) || song.artist_name?.toLowerCase().includes(query);
+    if (!matches) return;
+
+    if (inPlaylistLinks.has(song.music_link)) {
+      added.push(song);
+    } else {
+      others.push(song);
+    }
+  });
+
+  const finalList = [...added, ...others];
+
+  if (finalList.length === 0) {
+    empty.classList.remove('hidden');
+    container.innerHTML = '';
+    return;
+  }
+  empty.classList.add('hidden');
+
+  container.innerHTML = finalList.map((song, idx) => {
+    const isAdded = inPlaylistLinks.has(song.music_link);
+    const isHottest = currentPlaylistId === '__dufy_hottest__';
+
+    const button = isAdded && !isHottest
+      ? `<button onclick="removeSong('${song.music_link}')" class="bg-gray-700 hover:bg-red-600 text-white px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2"><i class="fas fa-check"></i> Added</button>`
+      : !isAdded && !isHottest
+      ? `<button onclick="addSong('${song.music_link}')" class="bg-green-500 hover:bg-green-400 text-black px-6 py-3 rounded-full text-sm font-bold">Add</button>`
+      : `<div class="w-28"></div>`;
+
+    const rank = idx < added.length 
+      ? `<span class="text-green-400 font-bold text-lg">#${idx + 1}</span>`
+      : `<span class="text-gray-600">${idx + 1}</span>`;
+
+    return `
+      <div class="flex items-center gap-5 bg-[#1a1a1a] p-5 rounded-xl hover:bg-[#252525] transition group ${isAdded ? 'ring-2 ring-green-500/50' : ''}">
+        <div class="w-10 text-center">${rank}</div>
+        <img src="${song.image_url || 'https://placehold.co/80x80/1a1a1a/00ff85?text=♪'}" class="w-16 h-16 rounded-lg object-cover">
+        <div class="flex-1">
+          <p class="font-semibold text-white text-lg">${song.music_name || 'Unknown'}</p>
+          <p class="text-gray-400">${song.artist_name || 'Unknown Artist'}</p>
+        </div>
+        ${button}
+        <a href="${song.music_link}" target="_blank" class="text-green-400 opacity-0 group-hover:opacity-100 transition">
+          <i class="fas fa-play-circle text-3xl"></i>
+        </a>
+      </div>
+    `;
+  }).join('');
+}
+
+// Add & Remove (NOW 100% STABLE)
+window.addSong = function(link) {
+  if (currentPlaylistId === '__dufy_hottest__') return;
+  const song = ALL_SONGS.find(s => s.music_link === link);
+  if (!song) return;
+
+  const playlists = JSON.parse(localStorage.getItem('dufy_playlists') || '[]');
+  const pl = playlists.find(p => p.id === currentPlaylistId);
+  if (pl && !pl.songs.some(s => s.music_link === link)) {
+    pl.songs.push(song);
+    localStorage.setItem('dufy_playlists', JSON.stringify(playlists));
+    currentPlaylistSongs = pl.songs;
+    document.getElementById('playlistCount').textContent = pl.songs.length + " songs";
+    renderAllSongs();
+    loadPlaylists();
+  }
+};
+
+window.removeSong = function(link) {
+  if (currentPlaylistId === '__dufy_hottest__') return;
+  const playlists = JSON.parse(localStorage.getItem('dufy_playlists') || '[]');
+  const pl = playlists.find(p => p.id === currentPlaylistId);
+  if (pl) {
+    pl.songs = pl.songs.filter(s => s.music_link !== link);
+    localStorage.setItem('dufy_playlists', JSON.stringify(playlists));
+    currentPlaylistSongs = pl.songs;
+    document.getElementById('playlistCount').textContent = pl.songs.length + " songs";
+    renderAllSongs();
+    loadPlaylists();
+  }
+};
+
+// Create / Delete
+function showCreateModal() { document.getElementById('createModal').classList.remove('hidden'); }
+function closeCreateModal() { document.getElementById('createModal').classList.add('hidden'); }
+function createPlaylist() {
+  const name = document.getElementById('newPlaylistName').value.trim();
+  if (!name) return alert("Enter playlist name!");
+  const playlists = JSON.parse(localStorage.getItem('dufy_playlists') || '[]');
+  playlists.push({ id: Date.now().toString(), name, songs: [] });
+  localStorage.setItem('dufy_playlists', JSON.stringify(playlists));
+  closeCreateModal();
+  document.getElementById('newPlaylistName').value = '';
+  loadPlaylists();
+}
+function deletePlaylist(e, id) {
+  e.stopPropagation();
+  if (!confirm("Delete forever?")) return;
+  let playlists = JSON.parse(localStorage.getItem('dufy_playlists') || '[]');
+  playlists = playlists.filter(p => p.id !== id);
+  localStorage.setItem('dufy_playlists', JSON.stringify(playlists));
+  loadPlaylists();
+}
+
+// INIT
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadSongs();
+  loadPlaylists();
+});
+</script>
+
+{% endblock %}

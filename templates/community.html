@@ -1,0 +1,410 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Community – DuFy{% endblock %}
+
+{% block content %}
+<style>
+/* Dark Theme for DuFy Community */
+body {
+    background-color: #1a1a1a;
+}
+
+/* Main container background */
+.max-w-7xl {
+    background-color: #1a1a1a;
+}
+
+/* Post cards and white backgrounds to dark */
+.bg-white {
+    background-color: #2a2a2a !important;
+}
+
+/* Text colors */
+.text-gray-800 {
+    color: #e0e0e0 !important;
+}
+
+.text-gray-700 {
+    color: #d0d0d0 !important;
+}
+
+.text-gray-600 {
+    color: #b0b0b0 !important;
+}
+
+.text-gray-500 {
+    color: #909090 !important;
+}
+
+.text-gray-400 {
+    color: #707070 !important;
+}
+
+/* Input fields */
+.bg-gray-100 {
+    background-color: #3a3a3a !important;
+    color: #e0e0e0 !important;
+}
+
+/* Borders */
+.border-gray-200 {
+    border-color: #404040 !important;
+}
+
+.border-gray-100 {
+    border-color: #383838 !important;
+}
+
+.border-gray-300 {
+    border-color: #4a4a4a !important;
+}
+
+/* Hover states */
+.hover\:bg-gray-50:hover {
+    background-color: #333333 !important;
+}
+
+/* Gradient backgrounds for playlists - Dark theme versions */
+.bg-gradient-to-r {
+    background: #2a2a2a !important;
+}
+
+.from-purple-50, .to-pink-50, .from-blue-50, .to-cyan-50, 
+.from-orange-50, .to-yellow-50, .from-green-50, .to-emerald-50 {
+    background: transparent !important;
+}
+
+/* Shadow adjustments */
+.shadow-md, .shadow-sm {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Green button stays same */
+.bg-green-500 {
+    background-color: #1db954 !important;
+}
+
+.hover\:bg-green-600:hover {
+    background-color: #1ed760 !important;
+}
+
+/* Placeholder text */
+input::placeholder {
+    color: #808080;
+}
+
+/* Focus ring color */
+.focus\:ring-gray-300:focus {
+    --tw-ring-color: #1db954 !important;
+}
+</style>
+
+<div class="max-w-7xl mx-auto px-4 py-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+    <!-- MAIN FEED (LEFT & CENTER) -->
+    <div class="lg:col-span-2 space-y-6">
+
+    <!-- CREATE POST BOX -->
+    <div class="bg-white rounded-2xl shadow-md p-5">
+        <div class="flex items-center gap-3 mb-3">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Profile" class="w-10 h-10 rounded-full border-2 border-gray-300 object-cover">
+            <input type="text" placeholder="What's on your mind?" class="flex-1 bg-gray-100 text-gray-800 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-300">
+        </div>
+        <button class="w-full mt-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition">Post</button>
+    </div>
+
+    <!-- POST 1 -->
+    <div class="bg-white rounded-2xl shadow-sm p-4 space-y-3">
+        <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Profile" class="w-9 h-9 rounded-full border-2 border-gray-200 object-cover">
+            <div>
+                <h3 class="text-gray-800 font-semibold text-sm">DJ Alex</h3>
+                <span class="text-gray-400 text-xs">2 hours ago</span>
+            </div>
+        </div>
+        <p class="text-gray-700 text-sm">Just discovered a new EDM track that's 🔥! Highly recommend for workout playlists.</p>
+        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&fit=crop" alt="Music" class="w-full rounded-lg mt-1 object-cover">
+        <div class="flex justify-between mt-2 text-gray-500 text-xs border-t border-gray-200 pt-2">
+            <button class="flex items-center gap-1 hover:text-blue-500 transition"><i class="fas fa-thumbs-up"></i> Like</button>
+            <button class="flex items-center gap-1 hover:text-blue-500 transition"><i class="fas fa-comment"></i> Comment</button>
+            <button class="flex items-center gap-1 hover:text-blue-500 transition"><i class="fas fa-share"></i> Share</button>
+        </div>
+        <div class="space-y-2 mt-2">
+            <div class="flex items-start gap-2">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop" alt="Commenter" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                    <span class="text-gray-800 font-semibold text-xs">Sita</span>
+                    <p class="text-gray-600 text-xs">That track is amazing! Adding it to my gym playlist 💪</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 mt-2 border-t border-gray-200 pt-2">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Profile" class="w-7 h-7 rounded-full object-cover">
+            <input type="text" placeholder="Write a comment..." class="flex-1 bg-gray-100 text-gray-800 rounded-full px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-gray-300">
+        </div>
+    </div>
+
+    <!-- POST 2 -->
+    <div class="bg-white rounded-2xl shadow-sm p-4 space-y-3">
+        <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Profile" class="w-9 h-9 rounded-full border-2 border-gray-200 object-cover">
+            <div>
+                <h3 class="text-gray-800 font-semibold text-sm">Maya Beats</h3>
+                <span class="text-gray-400 text-xs">1 day ago</span>
+            </div>
+        </div>
+        <p class="text-gray-700 text-sm">Looking for some high-energy Pop songs for my morning routine. Any suggestions?</p>
+        <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&fit=crop" alt="Music" class="w-full rounded-lg mt-1 object-cover">
+        <div class="flex justify-between mt-2 text-gray-500 text-xs border-t border-gray-200 pt-2">
+            <button class="flex items-center gap-1 hover:text-blue-500 transition"><i class="fas fa-thumbs-up"></i> Like</button>
+            <button class="flex items-center gap-1 hover:text-blue-500 transition"><i class="fas fa-comment"></i> Comment</button>
+            <button class="flex items-center gap-1 hover:text-blue-500 transition"><i class="fas fa-share"></i> Share</button>
+        </div>
+        <div class="space-y-2 mt-2">
+            <div class="flex items-start gap-2">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=50&h=50&fit=crop" alt="Commenter" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                    <span class="text-gray-800 font-semibold text-xs">Rina</span>
+                    <p class="text-gray-600 text-xs">Try Dua Lipa's new album! Perfect for morning vibes 🌞</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 mt-2 border-t border-gray-200 pt-2">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Profile" class="w-7 h-7 rounded-full object-cover">
+            <input type="text" placeholder="Write a comment..." class="flex-1 bg-gray-100 text-gray-800 rounded-full px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-gray-300">
+        </div>
+    </div>
+
+    <!-- POST 3 -->
+    <div class="bg-white rounded-2xl shadow-sm p-4 space-y-3">
+        <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Profile" class="w-9 h-9 rounded-full border-2 border-gray-200 object-cover">
+            <div>
+                <h3 class="text-gray-800 font-semibold text-sm">Rhythm King</h3>
+                <span class="text-gray-400 text-xs">2 days ago</span>
+            </div>
+        </div>
+        <p class="text-gray-700 text-sm">Throwback to the best Hip-Hop concert I've ever been to! The energy was unmatched 🎤🔊</p>
+        <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&fit=crop" alt="Music" class="w-full rounded-lg mt-1 object-cover">
+        <div class="flex justify-between mt-2 text-gray-500 text-xs border-t border-gray-200 pt-2">
+            <button class="flex items-center gap-1 hover:text-blue-500 transition"><i class="fas fa-thumbs-up"></i> Like</button>
+            <button class="flex items-center gap-1 hover:text-blue-500 transition"><i class="fas fa-comment"></i> Comment</button>
+            <button class="flex items-center gap-1 hover:text-blue-500 transition"><i class="fas fa-share"></i> Share</button>
+        </div>
+        <div class="space-y-2 mt-2">
+            <div class="flex items-start gap-2">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop" alt="Commenter" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                    <span class="text-gray-800 font-semibold text-xs">Kiran</span>
+                    <p class="text-gray-600 text-xs">Wish I was there! Who performed?</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 mt-2 border-t border-gray-200 pt-2">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Profile" class="w-7 h-7 rounded-full object-cover">
+            <input type="text" placeholder="Write a comment..." class="flex-1 bg-gray-100 text-gray-800 rounded-full px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-gray-300">
+        </div>
+    </div>
+
+    <!-- POST 4 -->
+    <div class="bg-white rounded-2xl shadow-sm p-4 space-y-3">
+        <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Profile" class="w-9 h-9 rounded-full border-2 border-gray-200 object-cover">
+            <div>
+                <h3 class="text-gray-800 font-semibold text-sm">Indie Soul</h3>
+                <span class="text-gray-400 text-xs">3 days ago</span>
+            </div>
+        </div>
+        <p class="text-gray-700 text-sm">Discovered this amazing indie artist today. Their voice gives me chills every time. Check them out! 🎵✨</p>
+        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&fit=crop" alt="Music" class="w-full rounded-lg mt-1 object-cover">
+        <div class="flex justify-between mt-2 text-gray-500 text-xs border-t border-gray-200 pt-2">
+            <button class="flex items-center gap-1 hover:text-blue-500 transition"><i class="fas fa-thumbs-up"></i> Like</button>
+            <button class="flex items-center gap-1 hover:text-blue-500 transition"><i class="fas fa-comment"></i> Comment</button>
+            <button class="flex items-center gap-1 hover:text-blue-500 transition"><i class="fas fa-share"></i> Share</button>
+        </div>
+        <div class="space-y-2 mt-2">
+            <div class="flex items-start gap-2">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=50&h=50&fit=crop" alt="Commenter" class="w-7 h-7 rounded-full object-cover">
+                <div>
+                    <span class="text-gray-800 font-semibold text-xs">Priya</span>
+                    <p class="text-gray-600 text-xs">Just listened to them! So underrated 😍</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 mt-2 border-t border-gray-200 pt-2">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Profile" class="w-7 h-7 rounded-full object-cover">
+            <input type="text" placeholder="Write a comment..." class="flex-1 bg-gray-100 text-gray-800 rounded-full px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-gray-300">
+        </div>
+    </div>
+
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="lg:col-span-1 space-y-6">
+        
+        <!-- FRIEND ACTIVITY FEED -->
+        <div class="bg-white rounded-2xl shadow-sm p-4">
+            <h3 class="text-gray-800 font-bold text-sm mb-4 flex items-center gap-2">
+                
+                Friend Activity
+            </h3>
+            <div class="space-y-3">
+                <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=50&h=50&fit=crop" alt="Friend" class="w-9 h-9 rounded-full object-cover">
+                    <div class="flex-1">
+                        <p class="text-gray-800 text-xs font-semibold">Sankho</p>
+                        <p class="text-gray-500 text-xs">Listening to "Blinding Lights"</p>
+                        <span class="text-gray-400 text-xs">5 min ago</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=50&h=50&fit=crop" alt="Friend" class="w-9 h-9 rounded-full object-cover">
+                    <div class="flex-1">
+                        <p class="text-gray-800 text-xs font-semibold">Anjali</p>
+                        <p class="text-gray-500 text-xs">Added to playlist "Chill Vibes"</p>
+                        <span class="text-gray-400 text-xs">12 min ago</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=50&h=50&fit=crop" alt="Friend" class="w-9 h-9 rounded-full object-cover">
+                    <div class="flex-1">
+                        <p class="text-gray-800 text-xs font-semibold">Bikash</p>
+                        <p class="text-gray-500 text-xs">Listening to "Levitating"</p>
+                        <span class="text-gray-400 text-xs">25 min ago</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=50&h=50&fit=crop" alt="Friend" class="w-9 h-9 rounded-full object-cover">
+                    <div class="flex-1">
+                        <p class="text-gray-800 text-xs font-semibold">Samita</p>
+                        <p class="text-gray-500 text-xs">Liked "Dance Monkey"</p>
+                        <span class="text-gray-400 text-xs">1 hour ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLLABORATIVE PLAYLISTS -->
+        <div class="bg-white rounded-2xl shadow-sm p-4">
+            <h3 class="text-gray-800 font-bold text-sm mb-4 flex items-center gap-2">
+                <i class="fas fa-list-ul text-green-500"></i>
+                Collaborative Playlists
+            </h3>
+            <div class="space-y-3">
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-3 hover:shadow-md transition cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=100&h=100&fit=crop" alt="Playlist" class="w-14 h-14 rounded-lg object-cover shadow-sm">
+                        <div class="flex-1">
+                            <h4 class="text-gray-800 font-bold text-xs mb-1">Weekend Vibes 🎵</h4>
+                            <p class="text-gray-600 text-xs">With Rajesh, Maya & 3 others</p>
+                            <p class="text-gray-500 text-xs mt-1">24 songs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-3 hover:shadow-md transition cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=100&h=100&fit=crop" alt="Playlist" class="w-14 h-14 rounded-lg object-cover shadow-sm">
+                        <div class="flex-1">
+                            <h4 class="text-gray-800 font-bold text-xs mb-1">Gym Motivation 💪</h4>
+                            <p class="text-gray-600 text-xs">With Bikash, Sita & 2 others</p>
+                            <p class="text-gray-500 text-xs mt-1">32 songs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl p-3 hover:shadow-md transition cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=100&h=100&fit=crop" alt="Playlist" class="w-14 h-14 rounded-lg object-cover shadow-sm">
+                        <div class="flex-1">
+                            <h4 class="text-gray-800 font-bold text-xs mb-1">Road Trip 🚗</h4>
+                            <p class="text-gray-600 text-xs">With Anjali & 4 others</p>
+                            <p class="text-gray-500 text-xs mt-1">18 songs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-3 hover:shadow-md transition cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1458560871784-56d23406c091?w=100&h=100&fit=crop" alt="Playlist" class="w-14 h-14 rounded-lg object-cover shadow-sm">
+                        <div class="flex-1">
+                            <h4 class="text-gray-800 font-bold text-xs mb-1">Chill Evenings 🌙</h4>
+                            <p class="text-gray-600 text-xs">With Priya, Rina & 1 other</p>
+                            <p class="text-gray-500 text-xs mt-1">28 songs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RECOMMENDATIONS -->
+        <div class="bg-white rounded-2xl shadow-sm p-4">
+            <h3 class="text-gray-800 font-bold text-sm mb-4 flex items-center gap-2">
+                <i class="fas fa-star text-green-500"></i>
+                Recommended for You
+            </h3>
+            <div class="space-y-3">
+                <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1619983081563-430f63602796?w=100&h=100&fit=crop" alt="Album" class="w-12 h-12 rounded-lg object-cover shadow-sm">
+                    <div class="flex-1">
+                        <p class="text-gray-800 font-semibold text-xs">Midnight Dreams</p>
+                        <p class="text-gray-500 text-xs">The Weeknd</p>
+                    </div>
+                    <button class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-semibold rounded-full transition flex items-center gap-1">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1611339555312-e607c8352fd7?w=100&h=100&fit=crop" alt="Album" class="w-12 h-12 rounded-lg object-cover shadow-sm">
+                    <div class="flex-1">
+                        <p class="text-gray-800 font-semibold text-xs">Summer Vibes</p>
+                        <p class="text-gray-500 text-xs">Calvin Harris</p>
+                    </div>
+                    <button class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-semibold rounded-full transition flex items-center gap-1">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=100&h=100&fit=crop" alt="Album" class="w-12 h-12 rounded-lg object-cover shadow-sm">
+                    <div class="flex-1">
+                        <p class="text-gray-800 font-semibold text-xs">Electric Storm</p>
+                        <p class="text-gray-500 text-xs">Martin Garrix</p>
+                    </div>
+                    <button class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-semibold rounded-full transition flex items-center gap-1">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=100&h=100&fit=crop" alt="Album" class="w-12 h-12 rounded-lg object-cover shadow-sm">
+                    <div class="flex-1">
+                        <p class="text-gray-800 font-semibold text-xs">Neon Lights</p>
+                        <p class="text-gray-500 text-xs">Dua Lipa</p>
+                    </div>
+                    <button class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-semibold rounded-full transition flex items-center gap-1">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1496024840928-4c417adf211d?w=100&h=100&fit=crop" alt="Album" class="w-12 h-12 rounded-lg object-cover shadow-sm">
+                    <div class="flex-1">
+                        <p class="text-gray-800 font-semibold text-xs">Lost Paradise</p>
+                        <p class="text-gray-500 text-xs">Kygo</p>
+                    </div>
+                    <button class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-semibold rounded-full transition flex items-center gap-1">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}DuFy{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/727/727245.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #121212;
+      color: white;
+      margin: 0;
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    .active-link {
+      color: #22c55e !important;
+      font-weight: 600;
+    }
+    .nav-link {
+      transition: all 0.2s ease;
+      padding-left: 0.5rem;
+    }
+    .nav-link i {
+      width: 20px;
+      text-align: center;
+    }
+    .nav-link:hover {
+      color: #22c55e !important;
+      transform: translateX(4px);
+    }
+  </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+  <div class="flex flex-1">
+
+    <!-- Sidebar -->
+    <aside class="w-60 bg-[#2A2A2A] p-6 flex flex-col fixed h-full overflow-y-auto">
+      <div>
+        <h1 class="text-3xl font-extrabold text-green-400 mb-10">DuFy</h1>
+
+        <h2 class="text-gray-400 uppercase text-sm mb-4 tracking-wider">Browse</h2>
+        <nav class="space-y-4 text-gray-300">
+          <a href="{% url 'discover' %}" 
+             class="nav-link flex items-center gap-5 {% if request.resolver_match.url_name == 'discover' %}active-link{% endif %}">
+            <i class="fas fa-search"></i> <span>Discover</span>
+          </a>
+          <a href="{% url 'genre' %}" 
+             class="nav-link flex items-center gap-5 {% if request.resolver_match.url_name == 'genre' %}active-link{% endif %}">
+            <i class="fas fa-music"></i> <span>Genre</span>
+          </a>
+        <a href="{% url 'community' %}" 
+   class="nav-link flex items-center gap-5 {% if request.resolver_match.url_name == 'community' %}active-link{% endif %}">
+    <i class="fas fa-comments"></i> <span>Community</span>
+</a>
+          <a href="{% url 'trending' %}" 
+             class="nav-link flex items-center gap-5 {% if request.resolver_match.url_name == 'trending' %}active-link{% endif %}">
+            <i class="fas fa-fire"></i> <span>Trending</span>
+          </a>
+        </nav>
+
+        <div class="mt-10 pt-5 border-t border-gray-800">
+          <h2 class="text-gray-400 uppercase text-sm mb-3 font-semibold">Library</h2>
+          <div class="space-y-4 text-gray-300">
+            <a href="{% url 'favourites' %}" 
+               class="nav-link flex items-center gap-5 {% if request.resolver_match.url_name == 'favourites' %}active-link{% endif %}">
+              <i class="fas fa-star"></i> <span>Favourites</span>
+            </a>
+            <!-- FIXED: 'playlist' → 'playlists' + correct url_name -->
+            <a href="{% url 'playlist' %}" 
+               class="nav-link flex items-center gap-5 {% if request.resolver_match.url_name == 'playlist' %}active-link{% endif %}">
+              <i class="fas fa-list"></i> <span>Playlists</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-60 flex-1 p-8">
+      <div class="max-w-6xl mx-auto">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#121212] mt-auto pt-10 pb-6">
+    <div class="max-w-7xl mx-auto px-6 ml-60">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+
+        <div>
+          <h1 class="text-3xl font-extrabold text-green-400 mb-4">DuFy</h1>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Discover, explore and enjoy music powered by AI.<br>
+            DuFy brings you personalized recommendations with simplicity and style.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-gray-300 font-semibold text-sm mb-3">Explore</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="{% url 'discover' %}" class="hover:text-green-400">Discover</a></li>
+            <li><a href="{% url 'genre' %}" class="hover:text-green-400">Genres</a></li>
+            <li><a href="{% url 'community' %}" class="hover:text-green-400">Community</a></li>
+            <li><a href="{% url 'trending' %}" class="hover:text-green-400">Trending</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-gray-300 font-semibold text-sm mb-3">Library</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="{% url 'favourites' %}" class="hover:text-green-400">Favourites</a></li>
+            <!-- FIXED: 'playlist' → 'playlists' -->
+            <li><a href="{% url 'playlist' %}" class="hover:text-green-400">Playlists</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-gray-300 font-semibold text-sm mb-3">Connect</h3>
+          <div class="flex space-x-4 text-gray-400 text-xl">
+            <a href="#" class="hover:text-green-400"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="hover:text-green-400"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-green-400"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-green-400"><i class="fab fa-youtube"></i></a>
+          </div>
+          <p class="text-gray-500 text-xs mt-4">
+            Built with love by DuFy Team<br>
+            © 2025 DuFy. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('.nav-link');
+      const currentPath = window.location.pathname;
+      links.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+          link.classList.add('active-link');
+        }
+      });
+    });
+  </script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

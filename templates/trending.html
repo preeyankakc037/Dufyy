@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Trending • DuFy{% endblock %}
+
+{% block content %}
+<section class="min-h-screen bg-[#121212] px-6 pt-10 pb-20">
+    <h2 class="text-white text-4xl font-bold mb-8">Trending Songs 🔥</h2>
+
+    {% if songs %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            {% for song in songs %}
+                <a href="{{ song.spotify_url }}" target="_blank" rel="noopener" class="block bg-[#1e1e1e] p-5 rounded-xl hover:bg-[#2a2a2a] transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1">
+                    
+                    <!-- Safe image with fallback -->
+                    {% if song.image %}
+                        <img src="{{ song.image }}" alt="{{ song.name }}" class="w-full aspect-square object-cover rounded-lg mb-4">
+                    {% else %}
+                        <div class="bg-gray-800 border-2 border-dashed border-gray-600 rounded-lg w-full aspect-square flex items-center justify-center mb-4">
+                            <span class="text-gray-500 text-4xl">♪</span>
+                        </div>
+                    {% endif %}
+
+                    <h3 class="text-white font-bold text-lg line-clamp-2 leading-tight">
+                        {{ song.name }}
+                    </h3>
+                    <p class="text-gray-400 text-sm mt-1 line-clamp-1">
+                        {{ song.artist }}
+                    </p>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-20">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-purple-500 mb-6"></div>
+            <p class="text-gray-400 text-xl">Fetching trending songs globally...</p>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

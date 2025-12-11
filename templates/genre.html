@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Browse by Genre – DuFy{% endblock %}
+
+{% block content %}
+
+<section class="py-16 px-6">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Page Title -->
+        <h2 class="text-4xl font-extrabold mb-12 text-white">Browse by Genre</h2>
+
+        <!-- Genre Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 mb-16">
+            <!-- Rock -->
+            <div class="genre-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                 data-genre="rock" data-cover="{% static 'Rock.jpg' %}">
+                <img src="{% static 'Rock.jpg' %}" alt="Rock" class="w-full h-56 object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <h3 class="text-2xl font-bold text-white">Rock</h3>
+                    <p class="text-green-400 text-sm">Guitars • Energy • Legends</p>
+                </div>
+            </div>
+
+            <!-- Pop -->
+            <div class="genre-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                 data-genre="pop" data-cover="{% static 'pop.jpg' %}">
+                <img src="{% static 'pop.jpg' %}" alt="Pop" class="w-full h-56 object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <h3 class="text-2xl font-bold text-white">Pop</h3>
+                    <p class="text-green-400 text-sm">Catchy • Dance • Hits</p>
+                </div>
+            </div>
+
+            <!-- Jazz -->
+            <div class="genre-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                 data-genre="jazz" data-cover="{% static 'jazz.jpg' %}">
+                <img src="{% static 'jazz.jpg' %}" alt="Jazz" class="w-full h-56 object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <h3 class="text-2xl font-bold text-white">Jazz</h3>
+                    <p class="text-green-400 text-sm">Smooth • Soul • Sax</p>
+                </div>
+            </div>
+
+            <!-- Hip-Hop -->
+            <div class="genre-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                 data-genre="hip-hop" data-cover="{% static 'hiphop.jpg' %}">
+                <img src="{% static 'hiphop.jpg' %}" alt="Hip-Hop" class="w-full h-56 object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <h3 class="text-2xl font-bold text-white">Hip-Hop</h3>
+                    <p class="text-green-400 text-sm">Beats • Flow • Culture</p>
+                </div>
+            </div>
+
+            <!-- Classical -->
+            <div class="genre-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                 data-genre="classical" data-cover="{% static 'classical.jpg' %}">
+                <img src="{% static 'classical.jpg' %}" alt="Classical" class="w-full h-56 object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <h3 class="text-2xl font-bold text-white">Classical</h3>
+                    <p class="text-green-400 text-sm">Piano • Orchestra • Timeless</p>
+                </div>
+            </div>
+
+            <!-- Electronic -->
+            <div class="genre-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                 data-genre="electronic" data-cover="{% static 'electronic.jpg' %}">
+                <img src="{% static 'electronic.jpg' %}" alt="Electronic" class="w-full h-56 object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <h3 class="text-2xl font-bold text-white">Electronic</h3>
+                    <p class="text-green-400 text-sm">EDM • Synth • Vibes</p>
+                </div>
+            </div>
+
+            <!-- Acoustic -->
+            <div class="genre-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                 data-genre="acoustic" data-cover="{% static 'acoustic.jpg' %}">
+                <img src="{% static 'acoustic.jpg' %}" alt="Acoustic" class="w-full h-56 object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <h3 class="text-2xl font-bold text-white">Acoustic</h3>
+                    <p class="text-green-400 text-sm">Guitar • Chill • Real</p>
+                </div>
+            </div>
+
+            <!-- Indie -->
+            <div class="genre-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                 data-genre="indie" data-cover="{% static 'indie.jpg' %}">
+                <img src="{% static 'indie.jpg' %}" alt="Indie" class="w-full h-56 object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <h3 class="text-2xl font-bold text-white">Indie</h3>
+                    <p class="text-green-400 text-sm">Unique • Raw • Free</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selected Genre Title -->
+        <div id="genreTitle" class="hidden mb-8">
+            <h3 class="text-4xl font-bold text-green-400"></h3>
+            <p class="text-gray-400 mt-2 text-lg">All tracks in this genre</p>
+        </div>
+
+        <!-- Songs List -->
+        <ul id="genreSongs" class="space-y-4"></ul>
+
+        <div id="noResults" class="hidden text-center py-20 text-gray-500 text-xl">
+            No songs found in this genre.
+        </div>
+    </div>
+</section>
+
+<script>
+let currentGenreCover = ""; // Stores the selected genre cover
+
+// Check if already in favorites
+function isFavorite(track) {
+    const favorites = JSON.parse(localStorage.getItem('favoriteTracks') || '[]');
+    return favorites.some(fav =>
+        fav.music_name === track.music_name &&
+        fav.artist_name === track.artist_name &&
+        fav.music_link === track.music_link
+    );
+}
+
+// Toggle favorite
+function toggleFavorite(event, track) {
+    event.stopPropagation();
+    event.preventDefault();
+    let favorites = JSON.parse(localStorage.getItem('favoriteTracks') || '[]');
+    const exists = isFavorite(track);
+
+    if (exists) {
+        favorites = favorites.filter(f => !(f.music_name === track.music_name && f.artist_name === track.artist_name && f.music_link === track.music_link));
+        event.target.classList.remove('text-yellow-400');
+        event.target.classList.add('text-white');
+    } else {
+        favorites.push(track);
+        event.target.classList.remove('text-white');
+        event.target.classList.add('text-yellow-400');
+    }
+    localStorage.setItem('favoriteTracks', JSON.stringify(favorites));
+}
+
+// Render one song (with genre cover + favorite star)
+function renderSong(track) {
+    const cover = currentGenreCover;
+    const link = track.music_link || "#";
+    const name = track.music_name || "Unknown Track";
+    const artist = track.artist_name || "Unknown Artist";
+    const isFav = isFavorite(track);
+
+    return `
+        <li class="flex items-center justify-between bg-[#1e1e1e] p-4 rounded-lg hover:bg-[#2a2a2a] transition group">
+            <div class="flex items-center gap-4 flex-1 min-w-0">
+                <img src="${cover}" alt="Cover" class="w-14 h-14 rounded object-cover">
+                <div class="flex-1 min-w-0">
+                    <p class="font-semibold text-white truncate">${name}</p>
+                    <p class="text-sm text-gray-400 truncate">${artist}</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <!-- Small Favorite Star -->
+                <button onclick='toggleFavorite(event, ${JSON.stringify(track).replace(/'/g, "&apos;")})'
+                        class="opacity-70 hover:opacity-100 transition">
+                    <i class="fas fa-star text-xs ${isFav ? 'text-yellow-400' : 'text-white'}"></i>
+                </button>
+
+                <!-- Play Button -->
+                <a href="${link}" target="_blank"
+                   class="bg-green-500 hover:bg-green-400 text-black font-bold w-12 h-12 rounded-full flex items-center justify-center transition">
+                    <i class="fas fa-play text-lg"></i>
+                </a>
+            </div>
+        </li>
+    `;
+}
+
+async function loadGenre(genre, coverUrl) {
+    currentGenreCover = coverUrl;
+
+    const titleEl = document.getElementById("genreTitle");
+    const songsList = document.getElementById("genreSongs");
+    const noResults = document.getElementById("noResults");
+
+    titleEl.classList.remove("hidden");
+    titleEl.querySelector("h3").textContent = genre.charAt(0).toUpperCase() + genre.slice(1);
+    songsList.innerHTML = "<p class='text-gray-400 py-10 text-center'>Loading songs...</p>";
+    noResults.classList.add("hidden");
+
+    try {
+        const resp = await fetch(`/api/recommend/?query=${genre}`);
+        const text = await resp.text();
+        const safeText = text.replace(/\bNaN\b/g, 'null');
+        const data = JSON.parse(safeText);
+        const tracks = Array.isArray(data.recommendations) ? data.recommendations : [];
+
+        if (tracks.length > 0) {
+            songsList.innerHTML = tracks.map(renderSong).join("");
+        } else {
+            songsList.innerHTML = "";
+            noResults.classList.remove("hidden");
+        }
+    } catch (err) {
+        console.error(err);
+        songsList.innerHTML = "<p class='text-red-400 text-center'>Failed to load songs.</p>";
+    }
+
+    // Smooth scroll
+    titleEl.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// Click on genre card
+document.querySelectorAll(".genre-card").forEach(card => {
+    card.addEventListener("click", () => {
+        const genre = card.getAttribute("data-genre");
+        const cover = card.getAttribute("data-cover");
+        loadGenre(genre, cover);
+    });
+});
+</script>
+
+<style>
+.fa-star.text-xs { font-size: 11px !important; transition: all 0.25s; }
+.fa-star.text-yellow-400 { filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.6)); }
+.genre-card:hover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.25), transparent);
+    opacity: 1;
+}
+</style>
+
+{% endblock %}
