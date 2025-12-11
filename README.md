@@ -44,7 +44,6 @@ Currently, the system is trained on a curated dataset with embeddings (`music_em
 
 1. Clone the repo:
 
-```bash
 git clone https://github.com/YOUR_USERNAME/Dufyy.git
 cd Dufyy
 
