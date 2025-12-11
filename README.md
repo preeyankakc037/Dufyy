@@ -1,6 +1,7 @@
 # DuFy 🎵
 
-![DuFy Banner](![Uploading image.png…]()
+![DuFy Banner](![<img width="1887" height="811" alt="image" src="https://github.com/user-attachments/assets/a391f36b-d3bf-4f97-b7ad-d21e4f6300de" />
+]()
 )  <!-- Replace with your image path -->
 
 **Live Demo:** [https://your-deployed-app.vercel.app](https://your-deployed-app.vercel.app)  
