@@ -1,49 +1,62 @@
-# DuFy: AI-Powered Music Recommendation System
+# DuFy 🎵
 
-Check out here====> https://dufy.onrender.com/
-## 🎧 Overview
-**DuFy** is an AI-powered music recommendation platform that delivers **personalized song suggestions** using **Natural Language Processing (NLP)** and **Machine Learning**.  
-Unlike traditional recommendation systems that rely only on listening history or popularity, DuFy analyzes **lyrics**, **metadata**, and **emotional context** to suggest songs that match the user’s intent, theme, or mood.
+![DuFy Banner](![Uploading image.png…]()
+)  <!-- Replace with your image path -->
 
-Built as a **full-stack web application**, DuFy integrates:
-- **Django + Django REST Framework (DRF)** for backend APIs  
-- **React.js + Tailwind CSS** for the frontend interface  
-- **NLP models (Sentence Transformers, Transformers)** for semantic similarity and intelligent recommendations  
+**Live Demo:** [https://your-deployed-app.vercel.app](https://your-deployed-app.vercel.app)  
+
+DuFy is a **Django + DRF backend project** that provides music recommendations and trending Spotify tracks using a public playlist. Optimized for **FAISS search**, caching with Redis, and deployed for **Vercel**.
 
 ---
 
-## ⚙️ Workflow
+## Features
 
-### 1. Data Collection
-A curated dataset of songs, including **lyrics, artist names, genres, and metadata**, is stored in a database (SQLite/PostgreSQL).
-
-### 2. Preprocessing
-Using NLP models, each song’s **lyrics are embedded** into numerical vectors that capture semantic meaning — such as emotions, topics, and themes.
-
-### 3. Similarity Analysis
-**Cosine similarity** measures the closeness between songs in the embedding space, enabling DuFy to find tracks that are similar in **emotion or lyrical content**.
-
-### 4. Recommendation Engine
-When a user provides a description or selects a song:
-- The system processes the input using NLP  
-- Finds songs with similar lyrical/semantic features  
-- Returns a ranked list of recommended songs  
-
-### 5. API Layer
-**Django REST Framework** exposes endpoints (e.g., `/api/recommend/`) to serve recommendations to the frontend.
-
-### 6. Frontend Display
-**React** fetches results from the API and presents them in an interactive, user-friendly interface styled with **Tailwind CSS**.
+- Fetch **Global Top 50** trending Spotify tracks  
+- Recommendation engine for personalized music  
+- REST API endpoints with **Django Rest Framework**  
+- Secure, production-ready settings for deployment  
+- Redis caching for improved performance  
+- Easy integration with frontend apps
 
 ---
 
-## 💡 Vision
-DuFy aims to make **music discovery more meaningful**, helping users explore songs that truly align with their feelings, creativity, or project needs — not just what’s trending.
+## Tech Stack
+
+- **Backend:** Python 3.x, Django 5.x, Django REST Framework  
+- **API:** Spotify Client Credentials API  
+- **Caching:** Redis  
+- **Vector Search:** FAISS  
+- **Deployment:** Vercel  
 
 ---
 
-**Tech Stack:** Django | DRF | React.js | Tailwind CSS | NLP (Sentence Transformers, Scikit-learn, Transformers)  
-**Language:** Python (3.11)  
-**Database:** SQLite / PostgreSQL  
+## Installation
 
----
+1. Clone the repository:
+
+bash
+git clone https://github.com/YOUR_USERNAME/Dufyy.git
+cd Dufyy
+
+2. Create a virtual environment:
+python -m venv venv
+# Linux/Mac
+source venv/bin/activate
+# Windows
+venv\Scripts\activate
+
+
+3. Install dependencies:
+   pip install -r requirements.txt
+
+4. Set environment variables:
+   export DJANGO_SECRET_KEY="your_secret_key"
+  export SPOTIFY_CLIENT_ID="your_spotify_client_id"
+  export SPOTIFY_CLIENT_SECRET="your_spotify_client_secret"
+
+5. Apply migrations and run server:
+python manage.py migrate
+python manage.py runserver
+
+
+
