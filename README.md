@@ -1,73 +1,114 @@
-# DuFy 🎵
+# DuFy 🎵  
+AI-Powered Semantic Music Recommendation for Creators
 
-<img width="1887" height="811" alt="DuFy Banner" src="https://github.com/user-attachments/assets/026a908a-0428-4588-aa3f-05adda5f1032" />
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Django](https://img.shields.io/badge/Django-Backend-green)
+![PyTorch](https://img.shields.io/badge/PyTorch-Embeddings-red)
+![FAISS](https://img.shields.io/badge/FAISS-Vector%20Search-orange)
+![NLP](https://img.shields.io/badge/NLP-Semantic%20Search-purple)
+![Status](https://img.shields.io/badge/Project-AI%20System-success)
 
-**Live Demo:** [https://dufy.onrender.com/](https://dufy.onrender.com/)  
----
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/026a908a-0428-4588-aa3f-05adda5f1032" width="32%" />
+  <img src="https://github.com/user-attachments/assets/012fb27b-6dee-414c-91ce-6b3b7a93ad00" width="32%" />
+  <img src="https://github.com/user-attachments/assets/f17dc954-240b-4857-880e-2cf109d64c97" width="32%" />
+</p>
 
-## About DuFy
-
-DuFy is an **AI-powered music recommendation system** designed to solve a real problem in the music discovery industry. Many users, editors, and content creators struggle to find music that matches a specific mood, style, or theme, and even when they do, it often takes too much time or effort.  
-
-The core goal of DuFy is **to automate music personalization at scale**—analyzing lyrics, metadata, and available audio across platforms (Spotify, YouTube, and other APIs) to cover **all available songs on the internet**. By leveraging **PyTorch embeddings and NLP-based similarity models**, DuFy aims to deliver highly accurate, context-aware, and personalized music recommendations efficiently.  
-
-Currently, the system is trained on a curated dataset with embeddings (`music_embeddings.pt`), and the vision is to expand to **automatically process all available songs** online, making personalized music discovery seamless, fast, and effective for users and creators alike.
-
----
-
-## Core Features
-
-- **Personalized Music Recommendations** 🎵  
-  - Trained on a dataset of songs using **PyTorch embeddings**.  
-  - Converts song lyrics and metadata into **vector embeddings** for semantic similarity.  
-  - Finds songs with similar mood, theme, or style based on user descriptions.  
-
-- **Trending Spotify Tracks**  
-  - Fetches Global Top 50 tracks from verified public playlists.  
-
-- **REST API Endpoints**  
-  - Exposes endpoints like `/api/recommend/` and `/api/trending/` for frontend integration.  
-
-- **Scalable Infrastructure**  
-  - Django + DRF backend, Redis caching, FAISS vector search for fast queries.  
+**Live Demo:** https://dufy.onrender.com/
 
 ---
 
-## Tech Stack
+## 📌 Project Overview
 
-- **Backend:** Django, Django REST Framework, SQLite/PostgreSQL  
-- **Frontend:** HTML, Tailwind CSS, Bootstrap  
-- **AI & NLP:** PyTorch, Sentence Transformers, Transformers (Hugging Face), scikit-learn  
-- **Tools & Infrastructure:** Render, Git & GitHub  
+DuFy is an AI-powered music recommendation system designed to help video editors and content creators discover songs using natural, descriptive queries instead of rigid genre tags.  
+
+Rather than relying on traditional metadata filters, DuFy transforms lyrics and contextual descriptions into semantic vector embeddings, enabling mood-aware and theme-based music search.
 
 ---
 
-## Installation
+## 🚀 What DuFy Does
 
-### 1. Clone the repository
+- Converts song lyrics and metadata into **PyTorch-based embeddings**
+- Uses **semantic similarity search (FAISS)** to match user queries
+- Fetches trending Spotify tracks via API integration
+- Exposes REST endpoints (`/api/recommend/`, `/api/trending/`)
+- Delivers fast, scalable recommendations using Django + Redis caching
 
+---
 
+## 🧠 How It Works
+
+1. Curated dataset with enriched song descriptions  
+2. NLP embedding generation using Transformers  
+3. Vector storage and similarity search via FAISS  
+4. Ranked recommendations returned through API  
+
+The system is currently trained on a curated embedding file (`music_embeddings.pt`), with a long-term vision of automating music ingestion and description generation at scale.
+
+---
+
+## 🏗️ Tech Stack
+
+**Backend:** Django, Django REST Framework  
+**AI/NLP:** PyTorch, Sentence Transformers, Hugging Face Transformers  
+**Search:** FAISS  
+**Database:** SQLite / PostgreSQL  
+**Infrastructure:** Render  
+**Frontend:** HTML, Tailwind CSS, Bootstrap  
+
+---
+
+## ⚙️ Installation
+
+```bash
 git clone https://github.com/preeyankakc037/Dufyy.git
 cd Dufyy
+```
 
-### 2. Create a virtual environment
+Create virtual environment:
+
+```bash
 python -m venv venv
 # Linux/Mac
 source venv/bin/activate
 # Windows
 venv\Scripts\activate
+```
 
-## 3. Install dependencies
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
+```
 
-## 4. Set environment variables
+Set environment variables:
+
+```bash
 export DJANGO_SECRET_KEY="your_secret_key"
-
 export SPOTIFY_CLIENT_ID="your_spotify_client_id"
-
 export SPOTIFY_CLIENT_SECRET="your_spotify_client_secret"
+```
 
-## 5. Apply migrations and run the server
+Run server:
+
+```bash
 python manage.py migrate
-
 python manage.py runserver
+```
+
+---
+
+## 🌟 What Makes DuFy Different
+
+- Designed specifically for **video editors and short-form creators**
+- Uses semantic search instead of genre filtering
+- Focuses on real-world descriptive queries
+- Built with scalability in mind despite deployment constraints
+- Research-driven development with iterative experimentation
+
+DuFy is an early but meaningful step toward fully automated, intelligent music discovery.
+
+---
+
+**Author:** Priyanka Khatri  
+AI & Full-Stack Development Project  
