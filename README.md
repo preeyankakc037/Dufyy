@@ -110,5 +110,4 @@ DuFy is an early but meaningful step toward fully automated, intelligent music d
 
 ---
 
-**Author:** Priyanka Khatri, Smriti Basnet 
 
